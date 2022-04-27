@@ -118,7 +118,7 @@ the output would be something like:
    (using branch `feature/app-specific-data-retrieval`):
 
     $ export DOCKER_BUILDKIT = 1
-    $ docker build --ssh default -t client:asdr --build-arg BRANCH=feature/app-specific-data-retrieval_2 -f images/client/Dockerfile images/client/
+    $ docker build --no-cache -t avail:ava-152 --build-arg BRANCH=miguel/ava-152-blocktoobig-bug -f images/da/Dockerfile images/da
 
 2. Run the services using `docker-compose.light-client.yml`:
 
