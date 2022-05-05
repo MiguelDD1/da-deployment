@@ -2,11 +2,10 @@ version: "3.3"
 services:
   full_node:
     container_name: full_node
-    image: da:poc3 
+    image: da:mat-3347
     tmpfs: /tmp
     volumes:
       - full_node-state:/da/state
-      - ./volume/stage/customSpec.json:/da/chain_spec.json:ro
     ports:
       - 9933:9933
       - 9944:9944
@@ -17,11 +16,11 @@ services:
         delay: 5s
         max_attempts: 3
     command: 
-      --chain /da/chain_spec.json
+      --chain /da/genesis/testnet.chain.spec.raw.json
       --base-path /da/state
       --name MATIC_FULLNODE
       --keystore-path /da/keystore
-      --bootnodes /ip4/54.160.87.220/tcp/30333/p2p/12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp
+      --bootnodes /ip4/54.160.87.220/tcp/30333/p2p/12D3KooWK1NcYjwpyRUYVG9tjp7X2iGbrQxNVafC5hJU9mggYTgv
       --execution Native
       --in-peers 10 
       --out-peers 10
@@ -34,9 +33,7 @@ services:
 
   dapp:
     container_name: dapp 
-    build:
-      context: ./images/dapp
-    image: da-app:master
+    image: dapp:asdr
     environment:
       - WS_URL=wss://polygon-da-explorer.matic.today/ws
 
